@@ -61,15 +61,17 @@ function placeStone(event) {
             return;
         }
         
-        if (isKo(row, col)) {
-            alert("劫, 不能落子, 请至少隔两手棋！");
-            return;
-        }
-        
         board[row][col] = currentPlayer;
         moveRecord.push({ row, col, player: currentPlayer });
         removeCapturedStones(capturedStones);
         saveBoardState();
+        
+        if (isKo()) {
+            alert("劫, 不能落子, 回到前一步！");
+            undoMove();
+            return;
+        }
+        
         currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
         drawBoard();
     }
@@ -77,8 +79,22 @@ function placeStone(event) {
 
 function isKo() {
     if (boardHistory.length < 2) return false;
-    const previousState = boardHistory[boardHistory.length - 2];
+    const previousState = boardHistory[boardHistory.length - 3];
     return JSON.stringify(board) === JSON.stringify(previousState);
+}
+
+function undoMove() {
+    if (boardHistory.length < 2) return;
+    boardHistory.pop(); // Remove current state
+    const previousState = boardHistory[boardHistory.length - 1];
+    for (let i = 0; i < boardSize; i++) {
+        for (let j = 0; j < boardSize; j++) {
+            board[i][j] = previousState[i][j];
+        }
+    }
+    moveRecord.pop();
+    currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
+    drawBoard();
 }
 
 function isValidMove(row, col, color, capturedStones) {
@@ -137,7 +153,7 @@ function removeCapturedStones(group) {
 
 function saveBoardState() {
     boardHistory.push(JSON.parse(JSON.stringify(board)));
-    if (boardHistory.length > 3) {
+    if (boardHistory.length > 10) {
         boardHistory.shift();
     }
 }
