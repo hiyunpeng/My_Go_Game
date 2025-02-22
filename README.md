@@ -28,7 +28,7 @@ This game is designed for **offline play**, making it ideal for situations where
    ```sh
    cd MyGoGame
    ```
-3. Open `index.html` in your web browser.
+3. Type `index.html` in your terminal and the game will appear on your web browser.
 
 ### How to Play
 1. Click on the board to place a stone.
