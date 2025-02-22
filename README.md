@@ -1,17 +1,23 @@
 ## My Go Game 简易双人围棋
 
-This is a web-based Go game implementation with interactive UI features, including an undo function, a restart button, a capture counter, and more.
+This is a **web-based player-to-player Go game** implementation with interactive UI features, including:
+- **Undo function** to revert the last move.
+- **Restart button** to reset the game.
+- **Capture counter** to track captured stones.
+- **Local play** without requiring internet, login, or registration.
+
+### About
+This game is designed for **offline play**, making it ideal for situations where an internet connection is unavailable. It was inspired by experiences of traveling by train, where poor Wi-Fi made it difficult to play online Go games on any device.
 
 ### Features
 - **Go Board (19x19)**: Implements a standard Go board with star points.
 - **Move Placement**: Players can click to place stones.
-- **Undo (悔棋)**: Allows undoing the last move.
-- **Restart Game (重新开始)**: Resets the board to start a new game.
+- **Undo**: Allows undoing the last move.
+- **Restart Game**: Resets the board to start a new game.
 - **Capture Counter**: Displays captured stones for both players.
-- **Ko Rule Handling**: Prevents immediate repetition of previous board states.
+- **Ko Rule Handling**: Prevents immediate repetition of previous board states, which is the hardest part of the game.
 - **Save & Load Game**: Automatically saves progress using local storage.
 - **Hover Effect**: Shows a preview of stone placement before committing a move.
-- **Player Timer**: Tracks the time spent by each player.
 
 ### Installation
 1. Clone this repository:
@@ -20,7 +26,7 @@ This is a web-based Go game implementation with interactive UI features, includi
    ```
 2. Navigate into the project folder:
    ```sh
-   cd go-game
+   cd MyGoGame
    ```
 3. Open `index.html` in your web browser.
 
@@ -33,7 +39,7 @@ This is a web-based Go game implementation with interactive UI features, includi
 
 ### File Structure
 ```
-📂 go-game
+📂 MyGoGame
 ├── 📂 css
 │   ├── style.css   # Styles for the board and UI
 ├── 📂 js
