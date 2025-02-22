@@ -72,7 +72,7 @@ function placeStone(event) {
     if (board[row][col] === null) {
         const capturedStones = [];
         if (!isValidMove(row, col, currentPlayer, capturedStones)) {
-            alert("无气，不能落子！！");
+            alert("无气，不能落子！！Cannot place stone here: no Qi");
             return;
         }
         
@@ -82,7 +82,7 @@ function placeStone(event) {
         saveBoardState();
         
         if (isKo()) {
-            alert("劫, 不能落子, 回到前一步！");
+            alert("劫, 不能落子, 回到前一步！Cannot place stone here: Ko appear, wait 1 stage.");
             undoMove();
             return;
         }
