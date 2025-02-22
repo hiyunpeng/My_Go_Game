@@ -2,7 +2,7 @@ const boardSize = 19; // Standard 19x19 Go board
 const board = Array.from({ length: boardSize }, () => Array(boardSize).fill(null));
 let currentPlayer = 'black';
 let moveRecord = [];
-let ko = null; // Track Ko position
+let boardHistory = []; // Track past board states
 
 const canvas = document.querySelector("#go-board");
 const ctx = canvas.getContext('2d');
@@ -61,22 +61,24 @@ function placeStone(event) {
             return;
         }
         
-        if (isKo(row, col, capturedStones)) {
-            alert("劫, 不能落子, 请至少隔一手棋！");
+        if (isKo(row, col)) {
+            alert("劫, 不能落子, 请至少隔两手棋！");
             return;
         }
         
         board[row][col] = currentPlayer;
         moveRecord.push({ row, col, player: currentPlayer });
         removeCapturedStones(capturedStones);
-        ko = capturedStones.length === 1 ? { row: capturedStones[0][0], col: capturedStones[0][1] } : null;
+        saveBoardState();
         currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
         drawBoard();
     }
 }
 
-function isKo(row, col, capturedStones) {
-    return capturedStones.length === 1 && ko && ko.row === capturedStones[0][0] && ko.col === capturedStones[0][1];
+function isKo() {
+    if (boardHistory.length < 2) return false;
+    const previousState = boardHistory[boardHistory.length - 2];
+    return JSON.stringify(board) === JSON.stringify(previousState);
 }
 
 function isValidMove(row, col, color, capturedStones) {
@@ -131,6 +133,13 @@ function removeCapturedStones(group) {
     group.forEach(([row, col]) => {
         board[row][col] = null;
     });
+}
+
+function saveBoardState() {
+    boardHistory.push(JSON.parse(JSON.stringify(board)));
+    if (boardHistory.length > 3) {
+        boardHistory.shift();
+    }
 }
 
 canvas.addEventListener('click', placeStone);
