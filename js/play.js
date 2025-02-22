@@ -23,8 +23,23 @@ function drawBoard() {
         ctx.lineTo(i * cellSize + cellSize / 2, canvas.height - cellSize / 2);
         ctx.stroke();
     }
-
+    drawNinePoints();
     drawStones();
+}
+
+function drawNinePoints() {
+    const starPoints = [
+        [3, 3], [9, 3], [15, 3],
+        [3, 9], [9, 9], [15, 9],
+        [3, 15], [9, 15], [15, 15]
+    ];
+    
+    ctx.fillStyle = "black";
+    starPoints.forEach(([x, y]) => {
+        ctx.beginPath();
+        ctx.arc(x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, 4, 0, 2 * Math.PI);
+        ctx.fill();
+    });
 }
 
 function drawStones() {
