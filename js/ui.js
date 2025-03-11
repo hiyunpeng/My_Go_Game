@@ -36,24 +36,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let blackCaptures = 0;
 let whiteCaptures = 0;
+let captureHistory = [];
 
 function updateCaptureCounter() {
     document.getElementById("capture-counter").innerHTML = `黑棋俘获 Black Capture: ${blackCaptures}<br>白棋俘获 White Capture: ${whiteCaptures}`;
 }
 
-
 function removeCapturedStones(group) {
+    let blackCaptured = 0;
+    let whiteCaptured = 0;
     group.forEach(([row, col]) => {
-        if (board[row][col] === "black") whiteCaptures++;
-        else if (board[row][col] === "white") blackCaptures++;
+        if (board[row][col] === "black") whiteCaptured++;
+        else if (board[row][col] === "white") blackCaptured++;
         board[row][col] = null;
     });
+    captureHistory.push({ black: blackCaptures, white: whiteCaptures });
+    blackCaptures += blackCaptured;
+    whiteCaptures += whiteCaptured;
     updateCaptureCounter();
 }
 
-
 function undoMove() {
-    if (boardHistory.length < 2) {
+    if (boardHistory.length < 2 || captureHistory.length < 1) {
         alert("无法悔棋 (No moves to undo)");
         return;
     }
@@ -65,11 +69,19 @@ function undoMove() {
             board[i][j] = previousState[i][j];
         }
     }
+    
+    // Restore previous capture count
+    const previousCaptures = captureHistory.pop();
+    if (previousCaptures) {
+        blackCaptures = previousCaptures.black;
+        whiteCaptures = previousCaptures.white;
+        updateCaptureCounter();
+    }
+    
     moveRecord.pop();
     currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
     drawBoard();
 }
-
 
 function restartGame() {
     if (!confirm("确定要重新开始吗？Are you sure to restart the game")) return;
@@ -88,6 +100,11 @@ function restartGame() {
 }
 
 
+function updateGameStatus() {
+    const status = document.getElementById("game-status");
+    status.innerText = `当前回合: ${moveRecord.length} - 轮到 ${currentPlayer === 'black' ? "黑棋" : "白棋"}`;
+}
+
 canvas.addEventListener("mousemove", (event) => {
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -103,9 +120,3 @@ canvas.addEventListener("mousemove", (event) => {
         ctx.globalAlpha = 1.0;
     }
 });
-
-function updateGameStatus() {
-    const status = document.getElementById("game-status");
-    status.innerText = `当前回合: ${moveRecord.length} - 轮到 ${currentPlayer === 'black' ? "黑棋" : "白棋"}`;
-}
-
