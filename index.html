@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Go Game</title>
+    <title>My Go Game - Start Menu</title>
     <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/play.js"></script>
-    <script defer src="js/ui.js"></script> <!-- Add the UI script -->
 </head>
-<body>
-    <h1>My Go Game 简易双人围棋</h1>
-    <canvas id="go-board" width="600" height="600"></canvas>
-    
+<body class="front-page">
+    <div class="container">
+        
+        <img src="assets/logo.jpg" alt="Go Game Logo" class="logo">
+        <h1>Welcome to the Go Game</h1>
+        <button id="start-game">Start Game</button>
+        <button id="quit-game">Quit Game</button>
+    </div>
+
+    <script src="js/navigation.js"></script>
 </body>
 </html>
+
+

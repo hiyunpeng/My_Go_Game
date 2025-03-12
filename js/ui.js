@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     undoButton.innerText = "悔棋 (Undo)";
     undoButton.style.position = "absolute";
     undoButton.style.top = "500px";
-    undoButton.style.right = "300px";
+    undoButton.style.left = "1200px";
     undoButton.style.padding = "10px";
     undoButton.style.fontSize = "16px";
     document.body.appendChild(undoButton);
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     captureCounter.id = "capture-counter";
     captureCounter.style.position = "absolute";
     captureCounter.style.top = "150px";
-    captureCounter.style.left = "100px";
+    captureCounter.style.left = "1200px";
     captureCounter.style.fontSize = "18px";
     captureCounter.style.fontWeight = "bold";
     captureCounter.innerHTML = "黑棋俘获 Black Capture: 0<br>白棋俘获 White Capture: 0";
@@ -27,12 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
     restartButton.innerText = "重新开始 (Restart)";
     restartButton.style.position = "absolute";
     restartButton.style.top = "560px";
-    restartButton.style.right = "260px";
+    restartButton.style.left = "1200px";
     restartButton.style.padding = "10px";
     restartButton.style.fontSize = "16px";
     document.body.appendChild(restartButton);
     restartButton.addEventListener("click", restartGame);
+
+    // Create Quit Game Button
+    const quitButton = document.createElement("button");
+    quitButton.innerText = "退出游戏 (Quit Game)";
+    quitButton.style.position = "absolute";
+    quitButton.style.top = "620px"; // Position below the Restart button
+    quitButton.style.left = "1200px";
+    quitButton.style.padding = "10px";
+    quitButton.style.fontSize = "16px";
+    document.body.appendChild(quitButton);
+    quitButton.addEventListener("click", quitGame);
+
 });
+
+
 
 let blackCaptures = 0;
 let whiteCaptures = 0;
@@ -99,6 +113,11 @@ function restartGame() {
     updateGameStatus();
 }
 
+
+function quitGame() {
+    if (!confirm("确定要退出吗？Are you sure to quit the game and return to the start menu?")) return;
+        window.location.href = "index.html"
+}
 
 function updateGameStatus() {
     const status = document.getElementById("game-status");

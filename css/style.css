@@ -1,4 +1,56 @@
 body {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+body.front-page {
+    display: flex;
+}
+
+
+body.thank-you-page {
+    display: flex;
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+canvas {
+    background-color: #deb887;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid black;
+}
+
+/* 
+body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
@@ -13,4 +65,4 @@ canvas {
     display: block;
     margin: 20px auto;
     border: 2px solid black;
-}
+} */
