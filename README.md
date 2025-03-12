@@ -8,8 +8,8 @@ This project is a **standalone Go game** that runs entirely in the browser. It d
 ## Features
 - **Go Board (19x19)**: Implements a standard Go board with star points.
 - **Move Placement**: Players can click to place stones.
-- **Undo Function**: Revert the last move with the **悔棋 (Undo)** button.
-- **Restart Game**: Reset the board with the **重新开始 (Restart)** button.
+- **Undo Function**: Revert the last move with the 悔棋 (Undo) button.
+- **Restart Game**: Reset the board with the 重新开始 (Restart) button.
 - **Capture Counter**: Tracks captured stones for both players (黑棋俘获 Black Capture and 白棋俘获 White Capture).
 - **Ko Rule Handling**: Prevents immediate repetition of previous board states.
 - **Save & Load Game**: Automatically saves progress using local storage.
