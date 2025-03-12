@@ -1,25 +1,23 @@
 ## My Go Game 简易双人围棋
 
-This is a **web-based player-to-player Go game** implementation with interactive UI features, including:
-- **Undo function** to revert the last move.
-- **Restart button** to reset the game.
-- **Capture counter** to track captured stones.
-- **Local play** without requiring internet, login, or registration.
+This is a **web-based player-to-player Go game** implementation with an interactive UI and enhanced features. The game is designed for **offline play**, making it ideal for situations where an internet connection is unavailable. It was inspired by experiences of traveling by train, where poor Wi-Fi made it difficult to play online Go games on any device.
 
-### About
-This game is designed for **offline play**, making it ideal for situations where an internet connection is unavailable. It was inspired by experiences of traveling by train, where poor Wi-Fi made it difficult to play online Go games on any device.
+## About
+This project is a **standalone Go game** that runs entirely in the browser. It does not require an internet connection, login, or registration. The game is designed to be simple, intuitive, and accessible for players of all skill levels.
 
-### Features
+## Features
 - **Go Board (19x19)**: Implements a standard Go board with star points.
 - **Move Placement**: Players can click to place stones.
-- **Undo**: Allows undoing the last move.
-- **Restart Game**: Resets the board to start a new game.
-- **Capture Counter**: Displays captured stones for both players.
-- **Ko Rule Handling**: Prevents immediate repetition of previous board states, which is the hardest part of the game.
+- **Undo Function**: Revert the last move with the **悔棋 (Undo)** button.
+- **Restart Game**: Reset the board with the **重新开始 (Restart)** button.
+- **Capture Counter**: Tracks captured stones for both players (黑棋俘获 Black Capture and 白棋俘获 White Capture).
+- **Ko Rule Handling**: Prevents immediate repetition of previous board states.
 - **Save & Load Game**: Automatically saves progress using local storage.
 - **Hover Effect**: Shows a preview of stone placement before committing a move.
-
+- **Front Page**: A welcoming page with options to **Start Game** or **Quit Game**.
+- **Thank-You Page**: A page to thank players after quitting the game, with a link to return to the front page.
 ### Installation
+
 1. Clone this repository:
    ```sh
    git clone https://github.com/your-username/go-game.git
@@ -30,12 +28,19 @@ This game is designed for **offline play**, making it ideal for situations where
    ```
 3. Type `index.html` in your terminal and the game will appear on your web browser.
 
-### How to Play
-1. Click on the board to place a stone.
-2. Use the **悔棋 (Undo)** button to undo the last move.
-3. Use the **重新开始 (Restart)** button to restart the game.
-4. View the capture counter to track captured stones.
-5. The game enforces the **Ko rule** to prevent infinite loops.
+### How to PlayStart Game: 
+
+1. Click the Start Game button on the front page to begin.
+
+2. Place Stones: Click on the board to place a stone with black goes first.
+
+3. Undo Move: Use the 悔棋 (Undo) button to revert the last move.
+
+4. Restart Game: Use the 重新开始 (Restart) button to reset the board.
+
+5. Capture Counter: View the number of captured stones for both players.
+
+6. Quit Game: Use the 退出游戏 (Quit Game) button to exit to the home page.
 
 ### File Structure
 ```
@@ -45,8 +50,12 @@ This game is designed for **offline play**, making it ideal for situations where
 ├── 📂 js
 │   ├── play.js     # Game logic (Go rules, board updates, move validation)
 │   ├── ui.js       # UI logic (buttons, counter, timer, hover effect)
-├── index.html      # Main game page
-├── README.md       # Project documentation (this file)
+|   |—— navigation.js
+├── index.html              # Front page with Start Game and Quit Game buttons
+├── game.html               # Main game page
+├── thank-you.html          # Thank-you page after quitting the game
+├── README.md               # Project documentation (this file)
+
 ```
 
 ### Contributing
